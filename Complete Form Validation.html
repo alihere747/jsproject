@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Complete Form Validation</title>
+    <style>
+        .error {
+            border: 1px solid red;
+        }
+        body{
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Complete Registration Form</h2>
+
+    <form id="registrationForm" onsubmit="return validateForm()">
+        <label for="name">Name:</label>
+        <input type="text" id="name" required>
+        <br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" required>
+        <br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" minlength="8" required>
+        <br>
+        <label for="confirmPassword">Confirm Password:</label>
+        <input type="password" id="confirmPassword" minlength="8" required>
+        <br>
+        <label for="age">Age:</label>
+        <input type="number" id="age" min="18" required>
+        <br>
+        <label for="phone">Phone:</label>
+        <input type="tel" id="phone" pattern="[0-9]{10}" required>
+        <br>
+        <label for="address">Address:</label>
+        <textarea id="address" required></textarea>
+        <br>
+        <label for="gender">Gender:</label>
+        <select id="gender" required>
+            <option value="" disabled selected>Select your gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+        </select>
+        <br>
+        <label for="agree">I agree to the terms and conditions:</label>
+        <input type="checkbox" id="agree" required>
+        <br>
+        <input type="submit" value="Register">
+    </form>
+
+    <script>
+        function validateForm() {
+            const name = document.getElementById("name");
+            const email = document.getElementById("email");
+            const password = document.getElementById("password");
+            const confirmPassword = document.getElementById("confirmPassword");
+            const age = document.getElementById("age");
+            const phone = document.getElementById("phone");
+            const address = document.getElementById("address");
+            const gender = document.getElementById("gender");
+            const agree = document.getElementById("agree");
+
+            // Reset borders and remove error messages
+            const inputs = [name, email, password, confirmPassword, age, phone, address, gender, agree];
+            inputs.forEach(input => {
+                input.style.border = "1px solid #ccc";
+            });
+
+            // Check for missing inputs
+            let isValid = true;
+            inputs.forEach(input => {
+                if (!input.value.trim()) {
+                    input.style.border = "1px solid red";
+                    isValid = false;
+                }
+            });
+
+            // Validate password
+            if (password.value !== confirmPassword.value) {
+                password.style.border = "1px solid red";
+                confirmPassword.style.border = "1px solid red";
+                isValid = false;
+            }
+
+            // Validate age
+            if (age.value < 18) {
+                age.style.border = "1px solid red";
+                isValid = false;
+            }
+
+            // Validate phone number
+            if (!/^[0-9]{10}$/.test(phone.value)) {
+                phone.style.border = "1px solid red";
+                isValid = false;
+            }
+
+            // Validate gender
+            if (gender.value === "") {
+                gender.style.border = "1px solid red";
+                isValid = false;
+            }
+
+            // Validate checkbox (terms and conditions)
+            if (!agree.checked) {
+                agree.style.outline = "1px solid red";
+                isValid = false;
+            }
+
+            return isValid;
+        }
+    </script>
+</body>
+
+</html>

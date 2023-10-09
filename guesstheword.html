@@ -1,0 +1,143 @@
+<html>
+
+<head>
+    <title>Guess Correct Word</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(0deg, #f68b8b, #e0cf8d 100%);
+        }
+
+        button {
+            margin-top: 20px;
+            font-family: cursive;
+            font-weight: 0;
+            font-size: 16px;
+            color: #ffffff;
+            background: linear-gradient(90deg, #3fdde9 0%, #bc44c9 100%);
+            padding: 10px 47px;
+            border: none;
+            box-shadow: rgb(0, 0, 0) 0px 0px 0px 0px;
+            border-radius: 22px 50px;
+            transition: 327ms;
+            transform: translateY(0);
+            color: black;
+            font-weight: bold;
+        }
+
+        button:hover {
+            transition: 327ms;
+            padding: 10px 50px;
+            transform: translateY(-0px);
+            background: linear-gradient(90deg, #9f62a5 0%, #ecea78 100%);
+            color: #ffffff;
+            border: none;
+        }
+
+        .hidden {
+            display: none;
+            width: max-content;
+        }
+
+        input {
+            width: max-content;
+            margin-top: 20px;
+            background-color: transparent;
+            border-radius: 25px;
+            border: 1px solid white;
+            padding: 10px;
+            font-size: 15px;
+        }
+
+        .message {
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+        h1 {
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bold;
+            margin-top: 200px;
+            font-family: cursive;
+            color: cornflowerblue;
+        }
+
+        .paraa {
+            margin-top: 30px;
+            font-size: 30px;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Guess The Word In Correct Order To Fill The Given Input</h1>
+    <div class="message"></div>
+    <input type="text" class="hidden">
+    <button type="button">Start</button>
+    <p class="paraa"></p>
+
+    <script>
+
+       
+const message = document.querySelector(".message");
+        const guess = document.querySelector("input");
+        const button = document.querySelector("button");
+        let para = document.querySelector(".paraa")
+        console.log(para);
+        let random
+        let inplay = false
+        let scramble = "";
+        let scrambled = "";
+        let myArray = ["javascript", "new", "html", "apple", "react"]
+        let score = 0
+
+        button.addEventListener('click', () => {
+            if (!inplay) {
+                button.innerHTML = "Guess"
+                guess.classList.toggle('hidden')
+                inplay = true
+
+                random = myArray[Math.floor(Math.random() * myArray.length)]
+                // console.log(random);
+
+                scramble = random.split("")
+                // console.log(scramble);
+
+                scrambled = randomArray(scramble)
+
+                message.innerHTML = scrambled.join("")
+            }
+            else {
+                var ipval = guess.value
+
+                if (ipval == random) {
+                    para.innerHTML = "You Guessed ''Right'' "
+                }
+                else if (ipval !== random) {
+                    score++
+                    para.innerHTML = `You Guessed  "${score}" Times`
+                }
+            }
+        })
+
+        function randomArray(arr) {
+            for (var i = arr.length - 1; i > 0; i--) {
+
+                let temp = arr[i]
+
+                let j = Math.floor(Math.random() * (i + 1))
+
+                arr[i] = arr[j]
+                arr[j] = temp
+            }
+            return arr
+        }
+    </script>
+</body>
+
+</html>

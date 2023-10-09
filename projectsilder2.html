@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .main{
+            height: 400px;
+            width:70%;
+            border: 1px solid #000;
+            position: relative;
+        }
+        .slidr{
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            text-align: center;
+            /* margin-top: 5%; */
+            
+        }
+        .slidr h1{
+            margin-top: 20%;
+            color: white;
+        }
+        .slidr1{
+          background-color: orange;
+        }
+        .slidr2{
+            background-color: burlywood;
+        }
+        .slidr3{
+            background-color: aqua;
+        }
+        .slidr4{
+            background-color: tomato;
+        }
+        .slidr5{
+            background-color: seagreen;
+        }
+        .active{
+            z-index: 2;
+        }
+    </style>
+</head>
+<body>
+    
+    <button class="leftbtn">Left</button>
+    <div class="main">
+        <div class="slidr slidr1 active"><h1>My Name is??</h1></div>
+        <div class="slidr slidr2"><h1>My Name is??</h1></div>
+        <div class="slidr slidr3"><h1>My Name is??</h1></div>
+        <div class="slidr slidr4"><h1>My Name is??</h1></div>
+        <div class="slidr slidr5"><h1>My Name is??</h1></div>
+    </div>
+    <button class="rightbtn">Right</button>
+
+    <script>
+        
+        var main =document.querySelectorAll(".slidr")
+        var leftbtn =document.querySelector(".leftbtn")
+        var rightbtn =document.querySelector(".rightbtn")
+        
+            console.log(rightbtn);
+        
+        var index=0
+
+        leftbtn.addEventListener("click", function(){
+            index--
+            if(index<0){
+                index=main.length-1
+            }
+            removeAll()
+            main[index].classList.add('active')
+        })
+        rightbtn.addEventListener("click", function(){
+            index++
+            if(index>main.length-1){
+                index=0
+            }
+            removeAll()
+            main[index].classList.add("active")
+
+        })
+        function removeAll(){
+            main.forEach(function(e, i){
+                e.classList.remove('active')
+            })
+        }
+
+
+
+
+    </script>
+</body>
+</html>

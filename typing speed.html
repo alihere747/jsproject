@@ -1,0 +1,110 @@
+<html>
+
+<head>
+    <title>Typing Speed</title>
+    <style>
+        .numb {
+            font-size: 2em;
+        }
+
+        button {
+            margin-bottom: 15px;
+            margin-top: 10px;
+        }
+
+        small {
+            font-size: 0.8em;
+            font-family: sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="message">Guess Combo</div>
+    <div class="game"></div>
+    <button type="button">Start</button>
+    <div><small>Instructions: Guess the combo, blue means higher red means lower. Try to solve it in as little guesses
+            as possible.</small></div>
+
+    <script>
+
+        var msg = document.querySelector('.message')
+        // console.log(msg);
+        var game = document.querySelector('.game')
+        // console.log(game);
+        var btn = document.querySelector('button')
+        // console.log(btn);
+
+        let inplay = false
+
+
+
+        btn.addEventListener('click', () => {
+
+            if (inplay == false) {
+
+                createInputs(6)
+                btn.innerHTML = "Guess"
+                inplay = true
+            }
+            else {
+                var CheckCorrection = document.querySelectorAll('.numb')
+                console.log(CheckCorrection);
+
+                CheckCorrection.forEach((item) => {
+
+                    var corr = item.correct
+                    console.log(corr, "corr");
+
+                    var valuee = item.value
+                    console.log(valuee, "valyues");
+
+
+                    if (corr == valuee) {
+                        item.style.background = 'green'
+                    }
+                    else if (corr < valuee) {
+                        item.style.background = 'red'
+                    }
+                    else if (corr > valuee) {
+                        item.style.background = 'blue'
+                    }
+                    
+
+
+                })
+
+            }
+        })
+
+
+
+        function createInputs(num) {
+            // console.log(num);
+            for (var i = 0; i < num; i++) {
+                // console.log(i);
+                var random = Math.floor(Math.random() * 10)
+                console.log(random, "random");
+
+                var inputs = document.createElement("input")
+                console.log(inputs);
+                inputs.style.width = "50px"
+                inputs.type = "number"
+                inputs.min = 0
+                inputs.max = 9
+                inputs.correct = random
+                inputs.classList.add('numb')
+
+                game.append(inputs)
+
+            }
+
+        }
+
+
+
+
+    </script>
+</body>
+
+</html>

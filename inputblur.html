@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        * {
+            margin: 0;
+        }
+
+        .main {
+            width: 100%;
+            height: 100vh;
+            background: url(https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80);
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            filter: blur(20px);
+
+        }
+
+        .form {
+            width: max-content;
+            height: max-content;
+            background-color: azure;
+            box-shadow: 1px 1px 6px 1px black;
+            position: absolute;
+            left: 40%;
+            top: 40%;
+            padding: 20px;
+        }
+
+        #inp {
+            width: 200px;
+            height: 20px;
+            border-radius: 10%;
+            margin-top: 20px;
+        }
+
+        h2 {
+            text-align: center;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="main"></div>
+
+    <div class="form">
+        <h2>Fill the input !</h2>
+        <input type="text" id="inp">
+    </div>
+
+    <script>
+
+        var inp = document.querySelector("#inp")
+        var main = document.querySelector('.main')
+
+        inp.addEventListener("input", function () {
+
+            var value = inp.value.length
+            // console.log(value);
+            var defaultBlur = 20 - value
+            main.style.filter = `blur(${defaultBlur}px)`
+        })
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+
+    <textarea name="adsfsfd" id="text" cols="30" rows="10" disabled></textarea>
+    <button id="btn">start</button>
+    <div id="message"></div>
+
+
+
+
+<script>
+
+var text = document.querySelector("#text")
+var btn = document.querySelector("#btn")
+var msg = document.querySelector("#message")
+
+console.log(text.disabled);
+
+var lines = ["kuchbhi likh lein","likh lein sir kuch bhhhi ma kia btaon","Welcome to pakistan ", "A quick brown fox jumps over the lazy dog"]
+
+
+// text.disabled=false
+btn.addEventListener("click", function(){
+// console.log(this.innerHTML);
+
+if(this.innerHTML=="start"){
+    text.disabled=false
+    
+    this.innerHTML="end"
+
+    startGame()
+
+
+}else{
+    text.disabled=true
+
+    this.innerHTML="start"    
+    endGame()
+}
+
+    // console.log("hello fn is running");
+
+})
+
+let randomLine
+let randomWords
+
+
+function startGame(){
+
+     randomLine =Math.floor(Math.random()* lines.length )
+     randomWords =lines[randomLine]
+    msg.innerHTML=randomWords
+
+
+}
+
+function endGame(){
+
+    var inputValue = text.value
+
+    var randomValue = randomWords.split(" ")
+    console.log(randomValue,'random split');
+
+    let usrValue = inputValue.split(" ")
+    console.log(usrValue, 'user split');
+    // console.log(inputValue, 'inp val',randomWords);
+    // if
+
+
+    msg.innerHTML="You have typed 2 correct words out of " + randomValue.length
+}
+
+
+
+
+
+
+
+
+</script>
+
+</body>
+</html>

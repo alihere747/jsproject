@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+        background-color: red;}
+
+        #scroll-container {
+            height: 200px;
+            width: 400px;
+            overflow: hidden;
+            border: 1px solid black;
+            position: relative;
+        }
+
+        #scroll-text {
+            position: absolute;
+            top: 0;
+            left: 0;
+            margin: 0;
+            padding: 10px;
+            font-size: 22px;
+            line-height: 1.4;
+
+        }
+
+        #speed-control {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="scroll-container">
+        <p id="scroll-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel mollis lectus. Sed
+            bibendum orci a quam posuere ultricies. Sed pharetra, est sit amet vehicula dapibus, nunc quam semper
+            turpis, quis porttitor nulla dolor vel augue.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi tempora iure, accusantium maiores placeat
+            aut alias et, deleniti illum itaque consectetur? Ipsa fuga odit laudantium maiores explicabo accusamus
+            asperiores ipsum!
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Enim molestias praesentium, doloremque velit
+            distinctio officiis repudiandae voluptates optio. Ea, pariatur! Autem fugit non veniam sed quas, quam est
+            earum voluptas?
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit aliquid debitis totam in quo, dignissimos
+            labore nisi eveniet. Facilis magnam optio illum voluptatum dignissimos, repellendus architecto unde omnis
+            cum distinctio?
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ullam optio iusto, cum expedita doloremque numquam
+            aut sint ipsum fugiat, nihil officiis? Dicta quaerat voluptatibus aliquam architecto illum aspernatur iusto
+            consequatur?
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fuga autem earum aperiam voluptas et a, soluta
+            expedita eveniet sit quibusdam! Voluptates fugiat, hic voluptatibus obcaecati nam suscipit dignissimos
+            blanditiis rem?
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis maxime quos quaerat dolore eius odio!
+            Placeat ipsam beatae hic mollitia iste modi, ullam laudantium eum blanditiis reprehenderit, nam fugiat
+            doloribus!
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magni, dolore rerum eaque et distinctio recusandae
+            libero, a sed eius dignissimos inventore quidem deserunt facilis. Consectetur magni voluptatem quibusdam et
+            expedita.
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi suscipit, et dolorum nisi voluptatibus
+            corrupti eum tempora nesciunt porro dicta maiores nihil maxime, consectetur eaque deserunt? Unde aperiam
+            voluptatibus explicabo.
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum sed nostrum soluta! Nihil ratione
+            voluptatum sint minima deserunt perspiciatis atque, repudiandae in, libero modi architecto harum esse
+            numquam necessitatibus dolorum.
+            lo'
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint repellat architecto ut eius pariatur dolor
+            repellendus, aspernatur velit voluptatibus minus sed culpa, fugit atque doloribus ullam a cupiditate. Eum,
+            quod.
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus fugiat, cupiditate id possimus, quod
+            facere itaque quia eos obcaecati amet nesciunt alias, soluta officia? Molestiae nisi debitis quam inventore
+            quia.
+        </p>
+    </div>
+
+    <div id="speed-control">
+        <label for="scroll-speed-input">Scroll Speed:</label>
+        <input type="number" id="scroll-speed-input" min="1" max="10" value="5">
+    </div>
+
+    <script>
+
+        const scrollContainer = document.querySelector('#scroll-container');
+        const scrollText = document.querySelector('#scroll-text');
+        const speedInput = document.querySelector('#scroll-speed-input');
+
+        let scrollSpeed = 5;
+        let isPaused = false;
+
+        speedInput.addEventListener('input', function (e) {
+            scrollSpeed = parseInt(e.target.value);
+        });
+
+        scrollContainer.addEventListener('mouseleave', function (e) {
+            if (!isPaused) {
+                const distanceToScroll = scrollText.clientHeight - scrollContainer.clientHeight;
+                let currentPosition = 0;
+
+                function animate() {
+                    currentPosition += scrollSpeed;
+                    if (currentPosition > distanceToScroll) {
+                        currentPosition = distanceToScroll;
+                    }
+                    scrollText.style.transform = `translateY(-${currentPosition}px)`;
+                    if (currentPosition < distanceToScroll && !isPaused) {
+                        requestAnimationFrame(animate);
+                    }
+                }
+
+                requestAnimationFrame(animate);
+            }
+        });
+
+        scrollText.addEventListener('mouseenter', function (e) {
+            isPaused = true;
+        });
+
+        scrollText.addEventListener('mouseleave', function (e) {
+            isPaused = false;
+        });
+
+
+    </script>
+</body>
+
+</html>

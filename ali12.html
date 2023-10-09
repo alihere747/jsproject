@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: 'Noto Sans', sans-serif;
+            background: radial-gradient(circle, #892cdc, #36159a);
+
+        }
+
+        .element {
+            margin: auto;
+            width: 100%;
+            text-align: center;
+            margin-top: 110px;
+        }
+
+        .element input {
+            padding: 20px;
+            font-size: 40px;
+            border: 1px solid #fff;
+            background-color: transparent;
+            color: #bbb;
+        }
+
+        .element input::active {
+            border: 1px solid #fff;
+        }
+
+        .element p {
+            font-size: 36px;
+            margin-top: 30px;
+            text-transform: capitalize;
+            color: #fff
+        }
+
+        .element h2 {
+            margin-bottom: 70px;
+            color: #fff;
+            text-align: center
+        }
+
+        .yellow-bg {
+            background-color: #EFC30A;
+            padding: 10px;
+            color: #000
+        }
+
+        h1 {
+            color: #fff;
+            margin-top: 94px;
+            text-align: center
+        }
+
+        .project {
+            margin-left: 10px;
+            font-size: 24px
+        }
+    </style>
+</head>
+
+<body>
+ 
+    <div class="element">
+
+        <h2>Converting Numbers Into Letters</h2>
+        <input type="text" id="turn" placeholder="Enter Number">
+        <p id="text"></p>
+    </div>
+
+    <script>
+        
+        var text = document.getElementById('text'),
+            Numbers = ["", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fivteen"],
+            y,
+            z,
+            y1,
+            z1,
+            h1,
+            h,
+            hunder,
+            ty,
+            i;
+
+        window.onkeyup = function (x) {
+            'use strict';
+            x = document.getElementById('turn').value;
+            y = Numbers[x];
+
+            if (x > 0 && x < 16) {
+                text.textContent = y;
+            } else if (x >= 16 && x < 20) {
+                y = x.split("");
+                z = y[1];
+                z = Numbers[z];
+                text.textContent = z + "teen";
+
+            } else if (x >= 20 && x < 100) {
+                y = x.split("");
+                z = y[0];
+                y = y[1];
+                z = Numbers[z];
+                y = Numbers[y];
+                if (x >= 20 && x < 30) {
+                    text.textContent = z.replace("o", "enty ") + (y);
+                } else if (x >= 30 && x < 40) {
+                    text.textContent = z.replace("ree", "irty ") + (y);
+                } else if (x >= 50 && x < 60) {
+                    text.textContent = z.replace("ve", "fty ") + (y);
+                } else {
+                    text.textContent = z + "ty " + (y);
+                }
+
+            } else if (x >= 100 && x < 1000) {
+                y = x.split("");
+                h = y[0];
+                z = y[1];
+                y = y[2];
+                h1 = Numbers[h];
+                z1 = Numbers[z];
+                y1 = Numbers[y];
+                hunder = " hundred and ";
+                ty = "ty ";
+                if (z === "0" && y === "0") {
+                    z1 = " ";
+                    y1 = " ";
+                    ty = " ";
+                    hunder = hunder.replace("and", " ");
+                    text.textContent = h1 + hunder + (z1) + ty + (y1);
+                } else if (z === "0") {
+
+                    text.textContent = h1 + hunder + y1;
+
+                } else if (z === "1") {
+                    if (y >= 0 && y < 6) {
+                        y1 = Numbers[+y + 10];
+                        text.textContent = h1 + hunder + y1;
+                    } else {
+                        text.textContent = h1 + hunder + y1 + "teen";
+                    }
+
+                } else {
+                    if (z >= 2 && z < 3) {
+                        text.textContent = h1 + hunder + (z1.replace("o", "enty ")) + (y1);
+                    } else if (z >= 3 && z < 4) {
+                        text.textContent = h1 + hunder + (z1.replace("ree", "irty ")) + (y1);
+                    } else if (z >= 5 && z < 6) {
+                        text.textContent = h1 + hunder + (z1.replace("ve", "fty ")) + (y1);
+                    } else {
+                        text.textContent = h1 + hunder + (z1) + ty + (y1);
+                    }
+                }
+            } else if (x < 0 || isNaN(x)) {
+                text.textContent = "Please Don't Enter Letters Or Negative Numbers";
+            } else if (x >= 1000) {
+                text.textContent = "You are Not Allowed to add more than three numbers";
+            } else if (x === "") {
+                text.textContent = "Don't Leave Me Empity";
+            }
+            for (i = 0; i <= x.length; i++) {
+                if (x.charAt(i) === ".") {
+                    text.textContent = "Please Don't Enter Letters Or Negative Numbers";
+                }
+            }
+
+
+
+
+        };
+
+    </script>
+</body>
+
+</html><!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: 'Noto Sans', sans-serif;
+            background: radial-gradient(circle, #892cdc, #36159a);
+
+        }
+
+        .element {
+            margin: auto;
+            width: 100%;
+            text-align: center;
+            margin-top: 110px;
+        }
+
+        .element input {
+            padding: 20px;
+            font-size: 40px;
+            border: 1px solid #fff;
+            background-color: transparent;
+            color: #bbb;
+        }
+
+        .element input::active {
+            border: 1px solid #fff;
+        }
+
+        .element p {
+            font-size: 36px;
+            margin-top: 30px;
+            text-transform: capitalize;
+            color: #fff
+        }
+
+        .element h2 {
+            margin-bottom: 70px;
+            color: #fff;
+            text-align: center
+        }
+
+        .yellow-bg {
+            background-color: #EFC30A;
+            padding: 10px;
+            color: #000
+        }
+
+        h1 {
+            color: #fff;
+            margin-top: 94px;
+            text-align: center
+        }
+
+        .project {
+            margin-left: 10px;
+            font-size: 24px
+        }
+    </style>
+</head>
+
+<body>
+ 
+    <div class="element">
+
+        <h2>Converting Numbers Into Letters</h2>
+        <input type="text" id="turn" placeholder="Enter Number">
+        <p id="text"></p>
+    </div>
+
+    <script>
+        
+        var text = document.getElementById('text'),
+            Numbers = ["", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fivteen"],
+            y,
+            z,
+            y1,
+            z1,
+            h1,
+            h,
+            hunder,
+            ty,
+            i;
+
+        window.onkeyup = function (x) {
+            'use strict';
+            x = document.getElementById('turn').value;
+            y = Numbers[x];
+
+            if (x > 0 && x < 16) {
+                text.textContent = y;
+            } else if (x >= 16 && x < 20) {
+                y = x.split("");
+                z = y[1];
+                z = Numbers[z];
+                text.textContent = z + "teen";
+
+            } else if (x >= 20 && x < 100) {
+                y = x.split("");
+                z = y[0];
+                y = y[1];
+                z = Numbers[z];
+                y = Numbers[y];
+                if (x >= 20 && x < 30) {
+                    text.textContent = z.replace("o", "enty ") + (y);
+                } else if (x >= 30 && x < 40) {
+                    text.textContent = z.replace("ree", "irty ") + (y);
+                } else if (x >= 50 && x < 60) {
+                    text.textContent = z.replace("ve", "fty ") + (y);
+                } else {
+                    text.textContent = z + "ty " + (y);
+                }
+
+            } else if (x >= 100 && x < 1000) {
+                y = x.split("");
+                h = y[0];
+                z = y[1];
+                y = y[2];
+                h1 = Numbers[h];
+                z1 = Numbers[z];
+                y1 = Numbers[y];
+                hunder = " hundred and ";
+                ty = "ty ";
+                if (z === "0" && y === "0") {
+                    z1 = " ";
+                    y1 = " ";
+                    ty = " ";
+                    hunder = hunder.replace("and", " ");
+                    text.textContent = h1 + hunder + (z1) + ty + (y1);
+                } else if (z === "0") {
+
+                    text.textContent = h1 + hunder + y1;
+
+                } else if (z === "1") {
+                    if (y >= 0 && y < 6) {
+                        y1 = Numbers[+y + 10];
+                        text.textContent = h1 + hunder + y1;
+                    } else {
+                        text.textContent = h1 + hunder + y1 + "teen";
+                    }
+
+                } else {
+                    if (z >= 2 && z < 3) {
+                        text.textContent = h1 + hunder + (z1.replace("o", "enty ")) + (y1);
+                    } else if (z >= 3 && z < 4) {
+                        text.textContent = h1 + hunder + (z1.replace("ree", "irty ")) + (y1);
+                    } else if (z >= 5 && z < 6) {
+                        text.textContent = h1 + hunder + (z1.replace("ve", "fty ")) + (y1);
+                    } else {
+                        text.textContent = h1 + hunder + (z1) + ty + (y1);
+                    }
+                }
+            } else if (x < 0 || isNaN(x)) {
+                text.textContent = "Please Don't Enter Letters Or Negative Numbers";
+            } else if (x >= 1000) {
+                text.textContent = "You are Not Allowed to add more than three numbers";
+            } else if (x === "") {
+                text.textContent = "Don't Leave Me Empity";
+            }
+            for (i = 0; i <= x.length; i++) {
+                if (x.charAt(i) === ".") {
+                    text.textContent = "Please Don't Enter Letters Or Negative Numbers";
+                }
+            }
+
+
+
+
+        };
+
+    </script>
+</body>
+
+</html>

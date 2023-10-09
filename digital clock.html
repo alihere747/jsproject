@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body{
+           display: flex;
+           align-items: center;
+           justify-content: space-around;
+           height: 100vh;
+        flex-direction: column;
+           font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+           background-color: rgba(0, 255, 255, 0.241);
+        }
+        body h1{
+            font-size: 100px;
+            color: burlywood;
+        }
+        .main{
+            height: 25vh;
+            width: 60%;
+            /* background-color: rgba(100, 148, 237, 0.27); */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .box{
+            height: 100%;
+            width: max-content;
+            border: 1px solid #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 130px;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75) inset,
+            0px 0px 10px 0px rgba(0,0,0,0.75);
+        }
+        .main span{
+            font-size: 160px;
+            margin-top: -20px;
+        }
+        .am-pm{
+            width: 25%;
+            font-size: 120px;
+        }
+        .main1{
+            height: 25vh;
+            width: 60%;
+            /* background-color: rgba(100, 148, 237, 0.27); */
+            display: flex;
+           justify-content: center;
+        }
+        .main1 span{
+            font-size: 160px;
+            margin-top: -20px;
+        }
+
+
+    </style>
+</head>
+<body>
+    <h1>Digital Clock</h1>
+    <div class="main">
+        <div class="hr box">00</div><span>:</span>
+        <div class="min box">00</div><span>:</span>
+        <div class="sec box">00</div><span>:</span>
+        <div class="am-pm box">AM</div>
+    </div>
+    <div class="main1">
+        <div class="dat box">00</div><span>/</span>
+        <div class="mon box">00</div><span>/</span>
+        <div class="year box">00</div>
+        
+    </div>
+
+    <script>
+
+        var hr = document.querySelector(".hr")
+        var min = document.querySelector(".min")
+        var sec = document.querySelector(".sec")
+        var ampm = document.querySelector(".ampm")
+        var dat = document.querySelector(".dat")
+        var mon = document.querySelector(".mon")
+        var year = document.querySelector(".year")
+        
+        
+        
+        setInterval(function(){
+            
+            
+            var time = new Date()
+    // console.log(time,'time');
+
+    hr.innerHTML  = time.getHours()
+    // console.log(hr, 'hours'); 
+
+    min.innerHTML = time.getMinutes()
+    // console.log(min, "minutes");
+    sec.innerHTML = time.getSeconds()
+    // console.log(sec, 'seconds');
+
+    year.innerHTML = time.getFullYear()
+    console.log(year,'year');
+
+    dat.innerHTML = time.getDate()
+    console.log(dat,'dat');
+
+    mon.innerHTML = time.getMonth()+1
+    console.log(dat,'dat');
+
+    // let ampm 
+
+    // if(hr < 12){
+    //     ampm="am"
+    // }else{
+    //     ampm="pm"
+    // }
+
+if(hr.innerHTML==0){
+    ampm.innerHTML= "am"
+}
+if(hr.innerHTML>12){
+    hr.innerHTML= hr.innerHTML-12
+    ampm.innerHTML= "pm"
+}
+
+console.log(ampm);
+
+console.log("hello world");
+
+
+
+
+
+}, 1000)
+    </script>
+    
+</body>
+</html>

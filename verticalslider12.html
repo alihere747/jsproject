@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vertical-Slider</title>
+
+    <style>
+
+          @import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+          * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+          }
+
+          body {
+            font-family: 'Open Sans', sans-serif;
+            height: 100vh;
+          }
+
+          .slider-container {
+            position: relative;
+            overflow: hidden;
+            width: 100vw;
+            height: 100vh;
+          }
+
+          .left-slide {
+            height: 100%;
+            width: 35%;
+            position: absolute;
+            top: -300vh;
+            left: 0;
+            transition: transform 0.5s ease-in-out;
+          }
+
+          .left-slide > div {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+          }
+
+          .left-slide h1 {
+            font-size: 40px;
+            margin-bottom: 10px;
+            margin-top: -30px;
+          }
+
+          .right-slide {
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 35%;
+            width: 65%;
+            transition: transform 0.5s ease-in-out;
+          }
+
+          .right-slide > div {
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center center;
+            height: 100%;
+            width: 100%;
+          }
+
+          button {
+            background-color: #fff;
+            border: none;
+            color: #aaa;
+            cursor: pointer;
+            font-size: 16px;
+            padding: 15px;
+          }
+
+          button:hover {
+            color: #222;
+          }
+
+          button:focus {
+            outline: none;
+          }
+
+          .slider-container .action-buttons button {
+            position: absolute;
+            left: 35%;
+            top: 50%;
+            z-index: 100;
+          }
+
+          .slider-container .action-buttons .down-button {
+            transform: translateX(-100%);
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+          }
+
+          .slider-container .action-buttons .up-button {
+            transform: translateY(-100%);
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+  }
+    </style>
+
+
+  </head>
+  <body>
+
+
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+        <link rel="stylesheet" href="style.css" />
+        <title>Vertical Slider</title>
+      </head>
+      <body>
+        <div class="slider-container">
+          <div class="left-slide">
+            <div style="background-color: #DF9056">
+              <h1></h1>
+              <p></p>
+            </div>
+            <div style="background-color:#634411">
+              <h1></h1>
+              <p></p>
+            </div>
+            <div style="background-color: #20486C">
+              <h1></h1>
+              <p></p>
+            </div>
+            <div style="background-color: #6D2446">
+              <h1></h1>
+              <p></p>
+            </div>
+          </div>
+          <div class="right-slide">
+            <div style="background-image: url('https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg')"></div>
+            <div style="background-image: url('https://media.wired.com/photos/598e35994ab8482c0d6946e0/master/w_2560%2Cc_limit/phonepicutres-TA.jpg')"></div>
+            <div style="background-image: url('https://www.recordnet.com/gcdn/presto/2021/03/22/NRCD/9d9dd9e4-e84a-402e-ba8f-daa659e6e6c5-PhotoWord_003.JPG')"></div>
+            <div style="background-image: url('https://media.istockphoto.com/id/825383494/photo/business-man-pushing-large-stone-up-to-hill-business-heavy-tasks-and-problems-concept.jpg?s=612x612&w=0&k=20&c=wtqvbQ6OIHitRVDPTtoT_1HKUAOgyqa7YzzTMXqGRaQ=')"></div>
+          </div>
+          <div class="action-buttons">
+            <button class="down-button">
+              <i class="fas fa-arrow-down"></i>
+            </button>
+            <button class="up-button">
+              <i class="fas fa-arrow-up"></i>
+            </button>
+          </div>
+        </div>
+    
+        <script>
+          var slides = document.querySelector(".slider-container")
+          var right = document.querySelector(".right-slide")
+          var left = document.querySelector(".left-slide")
+          var up = document.querySelector(".up-button")
+          var down = document.querySelector(".down-button")
+          var length = right.querySelectorAll("div").length
+          console.log(right);
+
+          let activeSlide = 0
+
+            left.style.top = `-${(length - 1) * 100}vh`
+          up.addEventListener("click", function(){
+            slideChange("up")
+          })
+
+          down.addEventListener("click", function(){
+            slideChange("down")
+          })
+
+            function slideChange(direction){
+              console.log(direction);
+              var slideHeight = slides.clientHeight
+              console.log(slideHeight);
+
+              if(direction == "up"){
+                activeSlide++
+                if(activeSlide >= length ){
+                  activeSlide = 0
+                }
+                // else if(direction == "up"){
+                //   activeSlide++
+                // }
+              }
+              else if(direction == "down"){
+                activeSlide-- 
+                if(activeSlide < 0){
+                  activeSlide = length - 1
+                }
+              }
+
+              right.style.transform =`translateY(-${activeSlide * slideHeight}px)` 
+              left.style.transform =`translateY(${activeSlide * slideHeight}px)` 
+
+            }
+
+
+        </script>
+      </body>
+    </html>
+
+
+    
+  </body>
+  </html>
+
+  <!-- <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+  @import url('https://fonts.googleapis.com/css?family=Open+Sans');
+        .main-slider{
+            height: 100vh;
+            width: 100%;
+            border: 1px solid #000;
+            display: flex;
+        }
+        .left-slider{
+            height: 100%;
+            width: 30%;
+            border: 1px solid red;
+        }
+        .right-slider{
+            height: 100%;
+            width: 70%;
+            border: 1px solid blue;
+        }
+        .left-hero-slider{
+            height:400vh;
+            width: 100%;
+            border: 1px solid brown;
+        }
+        .left-hero-div{
+            width: 100%;
+            height: 24.8%;
+            border: 2px solid orangered;
+        }
+        .right-hero-slider{
+            height: 400vh;
+            width: 100%;
+            border: 1px solid green;
+            
+        }
+        .right-hero-div{
+            height: 24.8%;
+            width: 100%;
+            border: 2px solid purple;
+        }
+        
+
+    </style>
+  </head>
+  <body>
+
+    <div class="main-slider">
+        <div class="left-slider">
+            <div class="left-hero-slider">
+                <div class="left-hero-div"></div>
+                <div class="left-hero-div"></div>
+                <div class="left-hero-div"></div>
+                <div class="left-hero-div"></div>
+            </div>
+        </div>
+        <div class="right-slider">
+            <div class="right-hero-slider">
+                <div class="right-hero-div"></div>
+                <div class="right-hero-div"></div>
+                <div class="right-hero-div"></div>
+                <div class="right-hero-div"></div>
+
+            </div>
+        </div>
+    </div>
+    
+  </body>
+  </html> -->
